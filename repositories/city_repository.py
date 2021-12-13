@@ -1,6 +1,7 @@
 from db.run_sql import run_sql
 
 from models.city import City
+from models.pub import Pub
 
 
 def save(city):
@@ -18,7 +19,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        city = City(row['name'], row['country'], row['visited'], row['id'] )
+        city = City(row['name'], row['country'], row['id'], row['visited'])
         cities.append(city)
     return cities
 
@@ -29,7 +30,7 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        city = City(result['name'], result['country'], result['visited'], result['id'])
+        city = City(result['name'], result['country'], result['id'], result['visited'])
     return city
 
 def delete_all():
@@ -37,6 +38,18 @@ def delete_all():
     run_sql(sql)
 
 def update(id):
-    sql = "UPDATE pubs SET (name, visited, city_id) = (%s, %s, %s) WHERE id =%s"
+    sql = "UPDATE pubs SET (name, city_id, visited) = (%s, %s, %s) WHERE id =%s"
     values = [pub.name, pub.visited, city.id, pub.id]
     run_sql(sql, values)
+
+def pubs(city):
+    cities = []
+
+    sql = "SELECT * FROM pubs WHERE pub_id = %s"
+    values = [city.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        pub = Pub(row['name'], row['country'], row['city_id'], row['visited'], row['id'])
+        pubs.append(pub)
+    return pubs

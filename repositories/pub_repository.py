@@ -4,8 +4,8 @@ from models.pub import Pub
 from models.city import City
 
 def save(pub):
-    sql = "INSERT INTO pubs (name, visited, city_id) VALUES (%s, %s, %s) RETURNING *"
-    values = [pub.name, pub.visited, city.id]
+    sql = "INSERT INTO pubs (name, city_id, visited) VALUES (%s, %s, %s) RETURNING *"
+    values = [pub.name, city.id, pub.visited]
     results = run_sql(sql, values)
     id = results[0]['id']
     pub.id = id
@@ -18,7 +18,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        pub = Pub(row['name'], row['visited'], row['city_id'] )
+        pub = Pub(row['name'], row['city_id'], row['visited'])
         pubs.append(pub)
     return pubs
 
@@ -29,12 +29,18 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        pub = City(result['name'], result['visited'], result['id'])
+        pub = Pub(result['name'], result['id'], result['visited'])
     return pub
 
 def delete_all():
     sql = "DELETE FROM pubs"
     run_sql(sql)
+
+def update(pub):
+    sql = "UPDATE pubs SET(name, city_id, visited) = (%s, %s, %s) WHERE id = %s"
+    values = [pub.name, city.id, pub.visited, pub.id]
+    print(values)
+    run_sql(sql, values)
 
 
 

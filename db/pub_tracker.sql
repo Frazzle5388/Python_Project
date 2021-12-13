@@ -11,6 +11,6 @@ CREATE TABLE cities (
 CREATE TABLE pubs (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255)
-    visited - BOOLEAN
     city_id INT REFERENCES cities(id)
+    visited BOOLEAN
 );
