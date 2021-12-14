@@ -7,7 +7,7 @@ import repositories.city_repository as city_repository
 
 def save(pub):
     sql = "INSERT INTO pubs (name, city_id, visited) VALUES (%s, %s, %s) RETURNING *"
-    values = [pub.name, city.id, pub.visited]
+    values = [pub.name, pub.city.id, pub.visited]
     results = run_sql(sql, values)
     id = results[0]['id']
     pub.id = id

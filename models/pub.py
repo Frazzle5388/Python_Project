@@ -1,6 +1,6 @@
 class Pub:
-    def __init__(self, name, city_id, id = None, visited=False):
+    def __init__(self, name, city, id = None, visited=False):
         self.name = name
-        self.city = city_id
+        self.city = city
         self.id = id
         self.visited = visited
