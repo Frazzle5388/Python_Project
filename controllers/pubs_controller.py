@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, redirect
-from flask import Blueprint
+from flask import Flask, Blueprint, render_template, request, redirect
 
-from models.pubs import Pub
+from models.pub import Pub
+from models.city import City
 
-import repositories.pub_repository
-import repositories.city_repository
+import repositories.pub_repository as pub_repository
+import repositories.city_repository as city_repository
 
 pubs_blueprint = Blueprint("pubs", __name__)
 
@@ -30,13 +30,13 @@ def create_pub():
 @pubs_blueprint.route("/pubs/<id>", methods=['GET'])
 def show_pub(id):
     pub = pub_repository.select(id)
-    return render_template("pubs/show.html", pub = pub, all_pubs = pubs)
+    return render_template("pubs/show.html", pub = pub, all_pubs=pubs)
 
 @pubs_blueprint.route("/pubs/<id>/edit", methods=['GET'])
 def edit_pubs(id):
     pub = pub_repository.select(id)
     cities = city_repository.select_all()
-    return render_template("pubs/edit.html", pub = pub, all cities = cities)
+    return render_template("pubs/edit.html", pub = pub, all_cities=cities)
 
 @pubs_blueprint.route("/pubs/<id>", methods=['POST'])
 def update_pub(id):

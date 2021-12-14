@@ -3,6 +3,8 @@ from db.run_sql import run_sql
 from models.city import City
 from models.pub import Pub
 
+import repositories.pub_repository as pub_repository
+
 
 def save(city):
     sql = "INSERT INTO cities (name, country, visited) VALUES (%s, %s, %s) RETURNING *"
@@ -19,7 +21,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        city = City(row['name'], row['country'], row['id'], row['visited'])
+        city = City(row['name'], row['country'], row['visited'], row['id'])
         cities.append(city)
     return cities
 
@@ -30,26 +32,21 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        city = City(result['name'], result['country'], result['id'], result['visited'])
+        city = City(result['name'], result['country'], result['visited'], result['id'])
     return city
 
 def delete_all():
     sql = "DELETE FROM cities"
     run_sql(sql)
 
-def update(id):
-    sql = "UPDATE pubs SET (name, city_id, visited) = (%s, %s, %s) WHERE id =%s"
-    values = [pub.name, pub.visited, city.id, pub.id]
-    run_sql(sql, values)
+# def pubs(city):
+#     cities = []
 
-def pubs(city):
-    cities = []
+#     sql = "SELECT * FROM pubs WHERE pub_id = %s"
+#     values = [city.id]
+#     results = run_sql(sql, values)
 
-    sql = "SELECT * FROM pubs WHERE pub_id = %s"
-    values = [city.id]
-    results = run_sql(sql, values)
-
-    for row in results:
-        pub = Pub(row['name'], row['country'], row['city_id'], row['visited'], row['id'])
-        pubs.append(pub)
-    return pubs
+#     for row in results:
+#         pub = Pub(row['name'], row['city_id'], row['visited'], row['id'])
+#         pubs.append(pub)
+#     return pubs

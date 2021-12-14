@@ -20,7 +20,8 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        pub = Pub(row['name'], row['city_id'], row['visited'])
+        city = city_repository.select(row['city_id'])
+        pub = Pub(row['name'], city, row['visited'])
         pubs.append(pub)
     return pubs
 
@@ -31,7 +32,8 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        pub = Pub(result['name'], result['id'], result['visited'])
+        city = city_repository.select(row['city_id'])
+        pub = Pub(result['name'], city, result['visited'], result['id'])
     return pub
 
 def delete_all():
@@ -39,8 +41,8 @@ def delete_all():
     run_sql(sql)
 
 def update(pub):
-    sql = "UPDATE pubs SET(name, city_id, visited) = (%s, %s, %s) WHERE id = %s"
-    values = [pub.name, city.id, pub.visited, pub.id]
+    sql = "UPDATE pubs SET (name, city_id, visited) = (%s, %s, %s) WHERE id = %s"
+    values = [pub.name, pub.city.id, pub.visited, pub.id]
     print(values)
     run_sql(sql, values)
 

@@ -5,8 +5,8 @@ from models.pub import Pub
 import repositories.city_repository as city_repository
 import repositories.pub_repository as pub_repository
 
-city_repository.delete_all()
 pub_repository.delete_all()
+city_repository.delete_all()
 
 city1 = City("Newfoundlager", "Canada", True)
 city_repository.save(city1)
