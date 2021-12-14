@@ -3,6 +3,8 @@ from db.run_sql import run_sql
 from models.pub import Pub
 from models.city import City
 
+import repositories.city_repository as city_repository
+
 def save(pub):
     sql = "INSERT INTO pubs (name, city_id, visited) VALUES (%s, %s, %s) RETURNING *"
     values = [pub.name, city.id, pub.visited]
