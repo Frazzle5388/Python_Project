@@ -39,14 +39,14 @@ def delete_all():
     sql = "DELETE FROM cities"
     run_sql(sql)
 
-# def pubs(city):
-#     cities = []
+def pubs(city):
+    cities = []
 
-#     sql = "SELECT * FROM pubs WHERE pub_id = %s"
-#     values = [city.id]
-#     results = run_sql(sql, values)
+    sql = "SELECT * FROM pubs WHERE pub_id = %s"
+    values = [city.id]
+    results = run_sql(sql, values)
 
-#     for row in results:
-#         pub = Pub(row['name'], row['city_id'], row['visited'], row['id'])
-#         pubs.append(pub)
-#     return pubs
+    for row in results:
+        pub = Pub(row['name'], row['city_id'], row['visited'], row['id'])
+        pubs.append(pub)
+    return pubs

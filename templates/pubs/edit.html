@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/pubs/{{pub.id}}" method="post">
+  <div>
+    <label for="name">Pub Name:</label>
+    <input type="text" id="name" name="name" value="{{pub.name}}" required autofocus>
+  </div>
+
+  <div>
+    <label for="city">City:</label>
+    <select id="city" name="city_id">
+      {% for city in all_cities %}
+        <option value="{{ city.id }}">{{ city.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <label for="visited">Visited:</label>
+    <select id="visited" name="visited">
+      <option value="True">Visited</option>
+      <option value="False">Not Visited</option>
+    </select>
+  </div>
+
+
+  <button type="submit">Update Pub</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> Add a City</h1>
+<p> Fill out the form below to add a City to your bucket list.</p>
+
+<form action="/cities" method="post">
+
+  <div>
+    <label for="name">City Name:</label>
+    <input type="text" id="name" name="name" placeholder="City Name" required autofocus>
+  </div>
+
+  <label for="city_type">City Type:</label>
+  <select id="city_type" name="city_type">
+    <option value="city break">City Break</option>
+    <option value="beach">Beach Holiday</option>
+    <option value="family">Family Holiday</option>
+    <option value="romantic">Romantic Holiday</option>
+  </select>
+
+  <div>
+    <label for="country">Country:</label>
+    <select id="country" name="country_id">
+      {% for country in all_countries %}
+        <option value="{{ country.id }}">{{ country.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <label for="visited">Visited:</label>
+    <select id="visited" name="visited">
+      <option value="True">Visited</option>
+      <option value="False">Not Visited</option>
+    </select>
+  </div>
+
+
+  <button type="submit">Add City</button>
+
+</form>
+
+{% endblock %}

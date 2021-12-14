@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>All Pubs</h1>
+<p>Here are all the pubs bruh...</p>
+
+{% for pub in all_pubs %}
+<div class="container">
+<div class="pubs">
+
+  <h2><br><b>{{pub.name}}</h2>
+  <br><b>City:</b> {{city.city_type}}
+  <br><b>Visited:</b> {{city.visited}}
+
+  <form action="/cities/{{city.id}}/delete" method="POST">
+    <button type="delete">Delete</button>
+  </form>
+  <form action="/cities/{{city.id}}/edit" method="GET">
+    <button type="edit">Edit</button>
+  </form>
+
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}
