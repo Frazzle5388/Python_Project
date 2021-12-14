@@ -10,15 +10,13 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('cities.cities') }}">Cities</a></li>
-                <li><a href="{{ url_for('cities.new_city') }}">Add New City</a></li>
-                <li><a href="{{ url_for('pubs.pubs') }}">Pubs</a></li>
-                <li><a href="{{ url_for('pubs.new_pub') }}">Add New Pub</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/cities">Cities</a></li>
+                <li><a href="/cities/new">Add New City</a></li>
+                <li><a href="/pubs">Pubs</a></li>
+                <li><a href="/pubs/new">Add New Pub</a></li>
             </ul>
         </nav>
     </header>
-    {% block home %}
-    {% endblock %}
 </body>
 </html>
