@@ -6,7 +6,7 @@ from models.city import City
 import repositories.city_repository as city_repository
 import repositories.pub_respository as pub_repository
 
-cities_blueprint = Blueprint("countries", __name__)
+cities_blueprint = Blueprint("cities", __name__)
 
 @cities_blueprint.route("/cities")
 def cities():

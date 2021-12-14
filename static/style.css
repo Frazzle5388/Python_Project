@@ -1,0 +1,7 @@
+.home-image {
+    width:100vw;
+    height:100vh;
+    background-image: url('https://i.pinimg.com/736x/84/8f/52/848f523efbaa2872fca14ceee42b01e5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
