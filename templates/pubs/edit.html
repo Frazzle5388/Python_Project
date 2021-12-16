@@ -10,7 +10,7 @@
   <div>
     <label for="city">City:</label>
     <select id="city" name="city_id">
-      {% for city in all_cities %}
+      {% for city in cities %}
         <option value="{{ city.id }}">{{ city.name }}</option>
       {% endfor %}
     </select>

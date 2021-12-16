@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<header><h1>Amend city</h1></header>
-
+<h1>Amend City</h1>
 
 <form action="/cities/{{city.id}}" method="post">
-    <label for="city">Select a City:</label>
+    <!-- <label for="city">Select a City:</label>
         <select name="city_id" id="city">
             {% for city in cities%}
             <option value="{{city.id}}">{{city.name}}</option>
             {% endfor %}
-        </select>
+        </select> -->
 
 
     <label for="name">City Name:</label>

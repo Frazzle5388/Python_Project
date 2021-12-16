@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<header><h1>all_cities</h1></header>
+<h1>All Cities</h1>
 <p>Here are all the cities bruh...</p>
 
 
-{% for city in all_cities %}
-<div class="countries">
+{% for city in cities %}
+<div class="cities">
 
     <h2><br><b>{{city.name}}</h2>
     <br><b>Country:</b> {{city.country}}
